@@ -22,7 +22,8 @@ It is has a number of dependencies that you need to install before being able to
 * Qt 5.X (4.x or 6.x could be used with relatively few modifications)
 * OpenCV 4.x or newer (3.x can be used with relatively few modifications)
 * Point Cloud Library 1.7 or newer
-* VTK 7 (newer versions do not seem to support PCLVisualizer)
+* VTK 9
+* VTK Visualizer (https://github.com/codebydant/pcl_visualizer)
 * Boost 
 * Eigen
 * FLANN
@@ -35,6 +36,36 @@ The project has successfully been compiled on Ubuntu 22.04, OS X 10.9 and Window
 The mathematical/algorithmic and hardware interface parts reside in individual classes from the presentation layer and business logic. The algorithmic classes (Codec*,  Triangulator, Camera, Projector) have very few external dependencies and are designed to be used on their own or in different environments. The Matlab interface shows what this might look like. 
 
 While the algorithm classes could easily be separated into a static/dynamic library, we currently see little value in doing so, and recommend to copy the relevant classes to a new project. Please note license terms.
+
+### Arch 6.1.111
+#insall vtk9
+sudo pacman -S vtk
+
+#Build pcl
+sudo yay -S pcl-git    
+git clone https://github.com/codebydant/pcl_visualizer.git
+cd pcl_visualizer                                         ✔ 
+mkdir build
+cd build
+cmake ..
+make
+make install
+
+#Add the other depenancies
+sudo pacman -S qt5-base opencv boost eigen glew
+
+#clone this library
+cd ~
+git clone https://github.com/Smithjoe1/slstudio.git
+cd ~/slstudio
+qmake ./src/SLStudio.pro
+make
+
+Run the file
+./SLStudio 
+
+
+
 
 ### Ubuntu 22.04
 Ubuntu also has all of the dependencies available as packages (except camera libraries). Running the following line should have you (almost) set:
