@@ -116,14 +116,15 @@ RESOURCES += \
 unix:!macx {
     CONFIG += link_pkgconfig
     # Link VTK (no pkg-config, only cmake files, hence we link manually for now)
-    INCLUDEPATH += /usr/include/vtk-9.1/
-    LIBS += -lvtkRenderingCore-9.1 -lvtkFiltersGeometry-9.1 -lvtkFiltersCore-9.1 -lvtkCommonExecutionModel-9.1 \
-            -lvtkCommonDataModel-9.1 -lvtkCommonMath-9.1 -lvtkCommonCore-9.1 -lvtkIOImage-9.1 -lvtkGUISupportQt-9.1 -lvtkRenderingOpenGL2-9.1
+    INCLUDEPATH += /usr/include/
+
+    LIBS += -lvtkRenderingCore -lvtkFiltersGeometry -lvtkFiltersCore -lvtkCommonExecutionModel \
+            -lvtkCommonDataModel -lvtkCommonMath -lvtkCommonCore -lvtkIOImage -lvtkGUISupportQt -lvtkRenderingOpenGL2 -lvtksys 
     # PCL pkg-config workaround
     LIBS += -lboost_system -lpcl_visualization -lpcl_common -lpcl_io -lpcl_search -lpcl_surface
     # PKG-config libs
-    INCLUDEPATH += /usr/include/pcl-1.12 /usr/include/eigen3/
-    PKGCONFIG += opencv4 pcl_visualization-1.12 pcl_surface-1.12 pcl_search-1.12 pcl_filters-1.12 pcl_kdtree-1.12 pcl_tracking-1.12 pcl_features-1.12 flann eigen3
+    INCLUDEPATH += /usr/include/pcl-1.14.1 /usr/include/eigen3/
+    PKGCONFIG += opencv4 pcl_visualization pcl_surface pcl_search pcl_filters pcl_kdtree pcl_tracking pcl_features flann eigen3
 }
 # Windows
 win32 {

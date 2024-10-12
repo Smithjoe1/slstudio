@@ -11,7 +11,7 @@
 
 #ifndef Q_MOC_RUN
 #include <Eigen/Eigen>
-#include <QVTKRenderWidget.h>
+#include <QVTKOpenGLNativeWidget.h>
 #include <pcl/surface/organized_fast_mesh.h>
 #include <pcl/visualization/pcl_visualizer.h>
 #endif
@@ -21,7 +21,7 @@
 typedef pcl::PointCloud<pcl::PointXYZRGB>::Ptr PointCloudPtr;
 typedef pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr PointCloudConstPtr;
 
-class PointCloudWidget : public QVTKRenderWidget {
+class PointCloudWidget : public QVTKOpenGLNativeWidget {
   Q_OBJECT
 public:
   explicit PointCloudWidget(QWidget *parent = 0);

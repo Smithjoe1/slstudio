@@ -28,7 +28,7 @@
 #include <QKeyEvent>
 
 PointCloudWidget::PointCloudWidget(QWidget *parent)
-    : QVTKRenderWidget(parent), surfaceReconstruction(false) {
+    : QVTKOpenGLNativeWidget(parent), surfaceReconstruction(false) {
 
   auto renderer = vtkSmartPointer<vtkRenderer>::New();
   auto renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
@@ -118,7 +118,7 @@ void PointCloudWidget::keyPressEvent(QKeyEvent *event) {
   updatePointCloud(pointCloudPCL);
 
   if (!(('0' <= event->key()) & (event->key() <= '9')))
-    QVTKRenderWidget::keyPressEvent(event);
+    QVTKOpenGLNativeWidget::keyPressEvent(event);
 }
 
 void PointCloudWidget::updatePointCloud(PointCloudConstPtr _pointCloudPCL) {
@@ -150,7 +150,7 @@ void PointCloudWidget::updatePointCloud(PointCloudConstPtr _pointCloudPCL) {
     }
   }
 
-  this->GetRenderWindow()->Render();
+  this->renderWindow()->Render();
   emit newPointCloudDisplayed();
 
   //    std::cout << "PCL Widget: " << time.restart() << "ms" << std::endl;
